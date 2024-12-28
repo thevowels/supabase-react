@@ -1,10 +1,22 @@
 import './scss/styles.scss';
+import {useEffect, useState} from 'react';
+import {supabase} from "./supabaseClient.js";
 function App() {
+    const [session, setSession] = useState(null);
+
+    useEffect(() => {
+        supabase.auth.getSession().then(({data:{session}})=>{
+            setSession(session);
+        })
+        supabase.auth.onAuthStateChange((_event,session) =>{
+            setSession(session);
+        });
+        console.log(session);
+    },[])
 
   return (
     <div className='container'>
-      <h1>Vite</h1>
-        <button className="btn btn-primary">Click me</button>
+        {!session ? <div>You aren't logged in.</div> : <div>Logged In</div>}
     </div>
   )
 }
