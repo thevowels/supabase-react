@@ -1,6 +1,7 @@
 import './scss/styles.scss';
 import {useEffect, useState} from 'react';
 import {supabase} from "./supabaseClient.js";
+import Auth from "./Auth.jsx";
 function App() {
     const [session, setSession] = useState(null);
 
@@ -16,7 +17,7 @@ function App() {
 
   return (
     <div className='container'>
-        {!session ? <div>You aren't logged in.</div> : <div>Logged In</div>}
+        {!session ? <Auth/> : <div>Logged In</div>}
     </div>
   )
 }
