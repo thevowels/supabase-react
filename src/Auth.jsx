@@ -19,7 +19,7 @@ export default function Auth() {
         }else{
             alert('Logged In');
         }
-        console.log('handling login');
+        setLoading(false);
     }
 
     return (
@@ -32,7 +32,9 @@ export default function Auth() {
                 <label  className="form-label">Password</label>
                 <input type="password" className="form-control" name="password"/>
             </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button className={'btn btn-primary'} disabled={loading}>
+                {loading ? <span>Loading</span> : <span>Log In </span>}
+            </button>
         </form>
     )
 }
