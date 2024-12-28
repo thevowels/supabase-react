@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import {supabase} from "./supabaseClient.js";
+import Avatar from "./Avatar.jsx";
 import "./App.css";
+
 
 export default function Account({session}) {
     const [loading, setLoading] = useState(true);
@@ -62,6 +64,14 @@ export default function Account({session}) {
     return(
         <div className='col-lg-5 col-xl-4 mx-auto text-center mt-5'>
             <form onSubmit={updateProfile}>
+                <Avatar
+                    url={avatar_url}
+                    size={150}
+                    onUpload={(event, url) => {
+                        updateProfile(event, url)
+                    }}
+                />
+
                 <div className={"mb-3"}>
                     <label className={"form-label"}>Email</label>
                     <input type={"email"} value={session.user.email} disabled />
