@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import {supabase} from "./supabaseClient.js";
+import "./App.css";
 
 export default function Account({session}) {
     const [loading, setLoading] = useState(true);
